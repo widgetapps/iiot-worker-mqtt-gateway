@@ -35,7 +35,7 @@ client.on('error', function (error) {
 client.on('connect', function () {
     console.log('Connected to MQTT server.');
     // Subscribe to hydrant pubs
-    client.subscribe(['+/gateway/v1/pressure', '+/gateway/v1/temperature', '+/gateway/v1/vibration']);
+    client.subscribe(['+/gateway/v1/humidity', '+/gateway/v1/temperature', '+/gateway/v1/vibration']);
 });
 
 client.on('reconnect', function () {
@@ -55,7 +55,7 @@ client.on('message', function (topic, message) {
 
     // console.log('Message from device ' + deviceId + ' of type ' + type);
 
-    let validTypes = ['pressure', 'temperature', 'vibration'];
+    let validTypes = ['humidity', 'temperature', 'vibration'];
 
     if (!_.includes(validTypes, type)) {
         return;
