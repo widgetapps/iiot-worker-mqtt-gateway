@@ -53,7 +53,7 @@ client.on('offline', function () {
 client.on('message', function (topic, message) {
     let [deviceId, source, version, type] = topic.split('/');
 
-    // console.log('Message from device ' + deviceId + ' of type ' + type);
+    console.log('Message from device ' + deviceId + ' of type ' + type);
 
     let validTypes = ['humidity', 'temperature', 'vibration'];
 
