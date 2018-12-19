@@ -100,7 +100,7 @@ client.on('message', function (topic, message) {
 });
 
 function handleData(amqp, data, deviceId) {
-    //console.log('Querying the deviceId ' + deviceId);
+    console.log('Querying the deviceId ' + deviceId);
 
     Device.findOne({ deviceId: deviceId })
         .populate('client')
