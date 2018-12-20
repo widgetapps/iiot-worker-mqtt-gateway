@@ -119,12 +119,12 @@ client.on('message', function (topic, message) {
 });
 
 function handleData(amqp, data, topicId) {
-    console.log('Querying the topicId ' + topicId);
+    //console.log('Querying the topicId ' + topicId);
 
     Device.findOne({ topicId: topicId })
         .populate('client')
         .exec(function (err, device) {
-            console.log('Device queried: ' + topicId);
+            //console.log('Device queried: ' + topicId);
             if (!device || err) {
                 console.log('Device not found');
                 return;
@@ -137,7 +137,7 @@ function handleData(amqp, data, topicId) {
 
 function queueDatabase(amqp, device, data) {
 
-    console.log('Queueing data: ' + JSON.stringify(data));
+    //console.log('Queueing data: ' + JSON.stringify(data));
 
     amqp.then (function(conn) {
         //console.log('AMQP connection established');
@@ -154,8 +154,8 @@ function queueDatabase(amqp, device, data) {
             return ok.then(function() {
                 buildMessage(asset, device, data, function(document){
 
-                    // ch.publish(ex, 'telemetry', Buffer.from(JSON.stringify(document)), {persistent: true});
-                    console.log(JSON.stringify(document));
+                    ch.publish(ex, 'telemetry', Buffer.from(JSON.stringify(document)), {persistent: true});
+                    //console.log(JSON.stringify(document));
 
                     return ch.close();
                 });
