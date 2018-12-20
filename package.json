@@ -1,7 +1,7 @@
 {
-  "name": "terepac-worker-mqtt-hydrant",
-  "version": "0.2.0",
-  "description": "Hydrant Worker",
+  "name": "terepac-worker-mqtt-gateway",
+  "version": "0.3.1",
+  "description": "Gateway Worker",
   "main": "server.js",
   "directories": {
     "lib": "lib"
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://terepac_dp@bitbucket.org/terepac/terepac-worker-mqtt-hydrant.git"
+    "url": "git+https://terepac_dp@bitbucket.org/terepac/terepac-worker-mqtt-gateway.git"
   },
   "keywords": [
     "nodejs"
   ],
   "author": "Darryl Patterson",
   "license": "LicenseRef-LICENSE",
-  "homepage": "https://bitbucket.org/terepac/terepac-worker-mqtt-hydrant#readme",
+  "homepage": "https://bitbucket.org/terepac/terepac-worker-mqtt-gateway#readme",
   "dependencies": {
     "@terepac/terepac-models": "^0.7.3",
     "amqplib": "^0.5.3",
