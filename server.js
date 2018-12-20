@@ -123,7 +123,7 @@ function handleData(amqp, data, topicId) {
     Device.findOne({ topicId: topicId })
         .populate('client')
         .exec(function (err, device) {
-            console.log('Device queried: ' + deviceId);
+            console.log('Device queried: ' + topicId);
             if (!device || err) {
                 console.log('Device not found');
                 return;
