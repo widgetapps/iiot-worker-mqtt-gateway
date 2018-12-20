@@ -13,6 +13,32 @@ let config = require('./config'),
     Asset    = require('@terepac/terepac-models').Asset,
     Sensor   = require('@terepac/terepac-models').Sensor;
 
+let conn = mongoose.connection;
+conn.on('connecting', function() {
+    console.log('Connecting to MongoDB...');
+});
+conn.on('error', function(error) {
+    console.error('Error in MongoDB connection: ' + error);
+    mongoose.disconnect();
+});
+conn.on('connected', function() {
+    console.log('Connected to MongoDB.');
+});
+conn.once('open', function() {
+    console.log('Connection to MongoDB open.');
+});
+conn.on('reconnected', function () {
+    console.log('Reconnected to MongoDB');
+});
+conn.on('disconnected', function() {
+    console.log('Disconnected from MongoDB.');
+    console.log('DB URI is: ' + config.db);
+    mongoose.connect(config.db, config.dbOptions);
+});
+
+mongoose.connect(config.db, config.dbOptions);
+
+/*
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db, config.dbOptions, function(err) {
     if (err) {
@@ -21,6 +47,7 @@ mongoose.connect(config.db, config.dbOptions, function(err) {
         console.log('Connected to MongoDB');
     }
 });
+*/
 
 let client  = mqtt.connect(config.mqtt, config.mqttoptions);
 let amqp = require('amqplib').connect(config.amqp);
@@ -53,7 +80,7 @@ client.on('offline', function () {
 client.on('message', function (topic, message) {
     let [deviceId, source, version, type] = topic.split('/');
 
-    console.log('Message from device ' + deviceId + ' of type ' + type);
+    // console.log('Message from device ' + deviceId + ' of type ' + type);
 
     let validTypes = ['humidity', 'temperature', 'vibration'];
 
