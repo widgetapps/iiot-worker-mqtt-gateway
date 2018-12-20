@@ -85,8 +85,8 @@ client.on('message', function (topic, message) {
         };
 
         switch (type) {
-            case 'pressure':
-                data.sensorType = 1;
+            case 'humidity':
+                data.sensorType = 9;
                 break;
             case 'temperature':
                 data.sensorType = 2;
@@ -99,10 +99,10 @@ client.on('message', function (topic, message) {
     });
 });
 
-function handleData(amqp, data, deviceId) {
-    console.log('Querying the deviceId ' + deviceId);
+function handleData(amqp, data, topicId) {
+    console.log('Querying the topicId ' + topicId);
 
-    Device.findOne({ deviceId: deviceId })
+    Device.findOne({ topicId: topicId })
         .populate('client')
         .exec(function (err, device) {
             //console.log('Device queried: ' + deviceId);
