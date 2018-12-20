@@ -228,7 +228,7 @@ function buildMessage(asset, device, data, callback) {
 
 function handleAppExit (options, err) {
     if (err) {
-        console.log('App Exit Error: ' + err.stack);
+        console.log('App Exit Error: ' + err);
     }
 
     if (options.cleanup) {
