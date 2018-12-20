@@ -38,8 +38,9 @@ conn.on('disconnected', function() {
 
 mongoose.connect(config.db, config.dbOptions);
 
-/*
 mongoose.Promise = global.Promise;
+
+/*
 mongoose.connect(config.db, config.dbOptions, function(err) {
     if (err) {
         console.log('Error connecting to MongoDB.');
