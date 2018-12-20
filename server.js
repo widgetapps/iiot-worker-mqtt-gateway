@@ -118,7 +118,7 @@ function handleData(amqp, data, topicId) {
 
 function queueDatabase(amqp, device, data) {
 
-    // console.log('Queueing data: ' + JSON.stringify(data));
+    console.log('Queueing data: ' + JSON.stringify(data));
 
     amqp.then (function(conn) {
         //console.log('AMQP connection established');
