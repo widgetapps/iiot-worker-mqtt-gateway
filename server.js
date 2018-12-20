@@ -13,6 +13,8 @@ let config = require('./config'),
     Asset    = require('@terepac/terepac-models').Asset,
     Sensor   = require('@terepac/terepac-models').Sensor;
 
+mongoose.Promise = global.Promise;
+
 let conn = mongoose.connection;
 conn.on('connecting', function() {
     console.log('Connecting to MongoDB...');
@@ -37,18 +39,6 @@ conn.on('disconnected', function() {
 });
 
 mongoose.connect(config.db, config.dbOptions);
-
-mongoose.Promise = global.Promise;
-
-/*
-mongoose.connect(config.db, config.dbOptions, function(err) {
-    if (err) {
-        console.log('Error connecting to MongoDB.');
-    } else {
-        console.log('Connected to MongoDB');
-    }
-});
-*/
 
 let client  = mqtt.connect(config.mqtt, config.mqttoptions);
 let amqp = require('amqplib').connect(config.amqp);
