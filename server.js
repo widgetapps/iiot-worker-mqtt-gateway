@@ -130,7 +130,15 @@ function handleData(amqp, data, topicId) {
                 return;
             }
 
-            queueDatabase(amqp, device, data);
+            // Save last transmission data to the  device.
+            device.lastTransmission = {
+                date: new Date(),
+                data: data
+            };
+
+            device.save(function (err, savedDevice) {
+                queueDatabase(amqp, device, data);
+            });
         });
 }
 
